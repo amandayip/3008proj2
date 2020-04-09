@@ -1,5 +1,6 @@
 var MongoClient = require('mongodb').MongoClient;
 var url = "mongodb://localhost:27017/colordb";
+var dbo = db.db("colordb");
 
 MongoClient.connect(url, function(err, db) {
   if (err) throw err;
@@ -20,11 +21,11 @@ MongoClient.connect(url, function(err, db) {
 MongoClient.connect(url, function(err, db) {
   if (err) throw err;
   var dbo = db.db("colordb");
-  while (dbo.colors.count() < 2097153) {
+  while (db.colors.count() < 2097153) {
     do {
         var color = Math.floor((Math.random()*3000000)+1);
     } 
-    dbo.colors.insert({"code" : "#" + ("000000" + color.toString(16)).slice(-6)});
+    db.colors.insert({"code" : "#" + ("000000" + color.toString(16)).slice(-6)});
 }
 
     db.close();
