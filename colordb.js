@@ -20,10 +20,13 @@ MongoClient.connect(url, function(err, db) {
 MongoClient.connect(url, function(err, db) {
   if (err) throw err;
   var dbo = db.db("colordb");
-  var myobj = { name: "Company Inc", address: "Highway 37" };
-  dbo.collection("customers").insertOne(myobj, function(err, res) {
-    if (err) throw err;
-    console.log("1 document inserted");
+  while (dbo.colors.count() < 2097153) {
+    do {
+        var color = Math.floor((Math.random()*3000000)+1);
+    } 
+    dbo.colors.insert({"code" : "#" + ("000000" + color.toString(16)).slice(-6)});
+}
+
     db.close();
   });
 });
