@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Scheme</title>
+    <style>
+        body {background-color: white;}
+        #item1 {background-color: yellowgreen;}
+        #item2, #item3 {background-color: grey;}
+    </style>
+</head>
+<body>
+    <div>
+        <h1>SVP Password Tester</h1>
+        <h2>User: svp(randomely change)</h2>
+        <h2>Scheme: textrandom; Condition: az09-5</h2>
+        <hr>
+        <div id="item1">
+            Create Password for: <b>Email</b>
+            <button type="button" onclick="window.location.href ='/otherpage' ">Create</button>
+            <button type="button" onclick="nextButton()">Next</button>
+        </div>
+        <br>
+        <div id="item2">
+            Create Password for: <b>Banking</b>
+            <button>Create</button>
+            <button type="button" onclick="nextButton()">Next</button>
+        </div>
+        <br>
+        <div id="item3">
+            Create Password for: <b>Shopping</b>
+            <button>Create</button>
+            <button type="button" onclick="nextButton()">Next</button>
+        </div>
+        <hr>
+        <div>
+            Create Password for: <b>All</b>
+            <button>Create</button>
+            <button>Next</button>
+        </div>
+    </div>
+</body>
+<script>
+    console.log("the js link");
+    let i = 2;
+    function nextButton(){
+        let prevID = `item${i-1}`;
+        let nextID = `item${i}`;
+        let prev = document.getElementById(prevID)
+        let next = document.getElementById(nextID)
+        prev.style.backgroundColor = "lightgrey";
+        next.style.backgroundColor = "yellowgreen";
+        //bug the button doesn't set to disable
+        prev.setAttribute("disabled", "");
+        (i !== 3) ? i++ : i = 1;
+    }
+</script>
+</html>

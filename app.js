@@ -5,6 +5,7 @@ const app = express();
 const bodyParser = require('body-parser');
 require('dotenv/config');
 const addColors = require('./colorarray');
+const path = require('path');
 
 mongoose.Promise = global.Promise = bluebird;
 
@@ -14,15 +15,20 @@ const colourRouter = require('./routers/color')
 mongoose.connect( `mongodb://localhost:27017/colordb`, 
     {useNewUrlParser: true, useUnifiedTopology: true}
 );
-
 app.set('port', process.env.PORT || 3000);
 
-app.use(bodyParser.json());
-app.use('/post', colourRouter);
+app.use(express.static(path.join(__dirname, 'public')));
+app.use('/lib', express.static(__dirname + '/node_modules'));
+app.set('views', __dirname + '/public/html');
+app.set('view engine', 'html');
+app.engine('html', require('ejs').renderFile);
 
-app.get('/', (req, res) => {
-    res.send("Hello world");
-});
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
+app.use('/otherpage', colourRouter);
+
+//app.get('/otherpage');
+app.get('*', (req, res) => res.render('index.html'));
 
 const connection = mongoose.connection;
 
