@@ -11,9 +11,8 @@ mongoose.Promise = global.Promise = bluebird;
 //router
 const colourRouter = require('./routers/color')
 
-mongoose.connect( `${process.env.DB_STRING}/${process.env.DB_STRING}`, 
-    {useNewUrlParser: true, useUnifiedTopology: true},
-    () => console.log("Db is connected")
+mongoose.connect( `mongodb://localhost:27017/colordb`, 
+    {useNewUrlParser: true, useUnifiedTopology: true}
 );
 
 app.set('port', process.env.PORT || 3000);
@@ -25,7 +24,14 @@ app.get('/', (req, res) => {
     res.send("Hello world");
 });
 
-addColors();
+const connection = mongoose.connection;
+
+connection.once("open", function() {
+    console.log("MongoDB database connection established successfully");
+    addColors();
+  });
+
+
 
 app.listen(app.get('port')).on('close', async err => {
     try {
