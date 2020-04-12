@@ -15,16 +15,23 @@ router.post('/', async (req, res) => {
     }
 });
 
+let dataSet = [];
 router.get('/otherpage', async (req, res) => {
     try{
         const colors = await ColorDb.find();
-        console.log("the colors: ", colors);
+        dataSet.push(colors);
+        //console.log("the colors: ", colors);
         //res.json(colors);
-        res.render("otherpage")
+        res.render("otherpage");
+        let color = colors[0].color;
+        console.log("the color: ", color);
+        document.getElementById("pass").innerHTML = color;
     }catch (e){
         console.log("the error: ", e);
     }
 });
+
+
 
 /* router.post('/otherpage', async (req, res) => {
     try{
