@@ -18,26 +18,40 @@
         <hr>
         <div id="item1">
             Create Password for: <b>Email</b>
-            <button type="button" onclick="window.location.href ='/otherpage' ">Create</button>
+            <button type="button" onclick="window.open('./otherpage', 'newwindow', 'width=600, height=300'); return true"> Create </button>
             <button type="button" onclick="nextButton()">Next</button>
         </div>
         <br>
         <div id="item2">
             Create Password for: <b>Banking</b>
-            <button>Create</button>
+            <button type="button" onclick="window.open('./otherpage', 'newwindow', 'width=600, height=300'); return true">Create</button>
             <button type="button" onclick="nextButton()">Next</button>
         </div>
         <br>
         <div id="item3">
             Create Password for: <b>Shopping</b>
-            <button>Create</button>
+            <button type="button" onclick="window.open('./otherpage', 'newwindow', 'width=600, height=300'); return true">Create</button>
             <button type="button" onclick="nextButton()">Next</button>
         </div>
         <hr>
         <div>
-            Create Password for: <b>All</b>
-            <button>Create</button>
-            <button>Next</button>
+            <div id="item2">
+                Create Password for: <b>Banking</b> (3 attempts only)
+                <button>Create</button>
+                <button type="button" onclick="nextButton()">Next</button>
+            </div>
+            <br>
+            <div id="item3">
+                Create Password for: <b>Email</b> (3 attempts only)
+                <button type="button"> Create </button>
+                <button type="button" onclick="nextButton()">Next</button>
+            </div>
+            <br>
+            <div id="item3">
+                Create Password for: <b>Shopping</b> (3 attempts only)
+                <button>Create</button>
+                <button type="button" onclick="nextButton()">Next</button>
+            </div>
         </div>
     </div>
 </body>

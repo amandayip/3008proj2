@@ -13,6 +13,25 @@ router.post('/', async (req, res) => {
     }catch (e){
         res.json({message: e});
     }
-})
+});
 
+router.get('/otherpage', async (req, res) => {
+    try{
+        const colors = await ColorDb.find();
+        console.log("the colors: ", colors);
+        //res.json(colors);
+        res.render("otherpage")
+    }catch (e){
+        console.log("the error: ", e);
+    }
+});
+
+/* router.post('/otherpage', async (req, res) => {
+    try{
+        const colors = await ColorDb.find();
+        res.json(colors);
+    }catch (e){
+        console.log("the error: ", e);
+    }
+}); */
 module.exports = router;

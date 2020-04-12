@@ -18,6 +18,7 @@ mongoose.connect( `mongodb://localhost:27017/colordb`,
 app.set('port', process.env.PORT || 3000);
 
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/js', express.static(__dirname + '/js'));
 app.use('/lib', express.static(__dirname + '/node_modules'));
 app.set('views', __dirname + '/public/html');
 app.set('view engine', 'html');
@@ -25,7 +26,7 @@ app.engine('html', require('ejs').renderFile);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
-app.use('/otherpage', colourRouter);
+app.get('/otherpage', colourRouter);
 
 //app.get('/otherpage');
 app.get('*', (req, res) => res.render('index.html'));
